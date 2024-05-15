@@ -1,0 +1,22 @@
+#!/usr/bin/env nu
+
+def main [
+  --image (-i): string = "ubuntu:24.04"
+  # Docker image
+  interpreter: string
+  # Script interpreter
+  script: string
+  # Script that will be executed
+  ] {
+  docker run -i -u $"(id -u):(id -g)" -v $"($env.PWD):/app" -v $"($script):($script)" -w "/app" $image /usr/bin/env $interpreter $script
+}
+
+# FIXME: not an adequate replacement for ./env
+# def main [...args] {
+#   print $args
+#   # let argv = $args | split words
+#   # print $argv
+#   # run ...$argv
+# }
+
+#vi: ft=nu:tw=120:sw=2:ts=2:sts=2:et
