@@ -35,17 +35,20 @@ install:
 uninstall:
     rm -rf "{{ DEST }}/{{ PACKAGE }}"
 
-# Test task that executes a nushell script
+# Example task that executes a nushell script
 run-nu:
     #!/usr/share/just-docker/env --image=jceb/nushell:latest nu
-    print "hello world"
+    print "hello nu"
 
-# Test task that executes a bash script
+# Example task that executes a bash script
 run-bash:
     #!/usr/share/just-docker/env bash
-    echo "hello world"
+    echo "hello bash"
 
-# Test task that executes a python script
+# Example task that executes a python script
 run-python:
     #!/usr/share/just-docker/env --image=python python3
-    print("hello world")
+    print("hello python")
+
+# Run all example tasks
+run-examples: run-nu run-bash run-python
